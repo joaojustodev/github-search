@@ -1,22 +1,27 @@
-import React from 'react'
-import Head from 'next/head'
+import React from "react";
+import Head from "next/head";
 
-import RocketseatLogo from '../assets/rocketseat.svg'
-
-import { Container } from '../styles/pages/Home'
+import Search from "../components/search";
+import hero from "../assets/hero.png";
+import { Container, Title, HeroImage } from "../styles/pages/Home";
 
 const Home: React.FC = () => {
   return (
     <Container>
       <Head>
-        <title>Homepage</title>
+        <title>Github Search</title>
       </Head>
 
-      <RocketseatLogo />
-      <h1>ReactJS Structure</h1>
-      <p>A ReactJS + Next.js structure made by Rocketseat.</p>
-    </Container>
-  )
-}
+      <div>
+        <Title>Github Search</Title>
+        <Search />
+      </div>
 
-export default Home
+      <div>
+        <HeroImage src={hero} alt="Github Search" />
+      </div>
+    </Container>
+  );
+};
+
+export default Home;
