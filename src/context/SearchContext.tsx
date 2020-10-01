@@ -34,7 +34,7 @@ interface ISearchContext {
 const SearchContext = React.createContext<ISearchContext>(null);
 
 const SearchContextProvider: React.FC = ({ children }) => {
-  const [searchState, setSearchState] = React.useState({
+  const [searchState, setSearchState] = React.useState<ISearchState>({
     input: "",
     error: "",
     loading: false,

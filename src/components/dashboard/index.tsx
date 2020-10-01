@@ -46,36 +46,34 @@ const dashboard: React.FC = () => {
             <p>{data.bio ? data.bio : "Bio not found"}</p>
           </PanelBio>
           <PanelSocial>
-            <div>
+            <a
+              href={data.html_url}
+              target="_blank"
+              rel="noreferrer"
+              className="github"
+            >
+              <FiGithub />
+            </a>
+            {data.twitter_username && (
               <a
-                href={data.html_url}
+                href={`https://twitter.com/${data.twitter_username}`}
                 target="_blank"
                 rel="noreferrer"
-                className="github"
+                className="twitter"
               >
-                <FiGithub />
+                <FiTwitter />
               </a>
-              {data.twitter_username && (
-                <a
-                  href={`https://twitter.com/${data.twitter_username}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="twitter"
-                >
-                  <FiTwitter />
-                </a>
-              )}
-              {data.blog && (
-                <a
-                  href={data.blog}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="blog"
-                >
-                  <FiAtSign />
-                </a>
-              )}
-            </div>
+            )}
+            {data.blog && (
+              <a
+                href={data.blog}
+                target="_blank"
+                rel="noreferrer"
+                className="blog"
+              >
+                <FiAtSign />
+              </a>
+            )}
           </PanelSocial>
         </PanelContent>
       </Panel>

@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const GoBack = styled.div`
-  position: fixed;
+  position: absolute;
   top: 15px;
   left: 15px;
 
@@ -72,6 +72,24 @@ export const PanelInfo = styled.div`
 
   display: flex;
   justify-content: space-between;
+
+  small a {
+    color: #069;
+  }
+
+  @media screen and (max-width: 748px) {
+    flex-direction: column;
+
+    div + div {
+      margin-top: 25px;
+    }
+
+    div:nth-child(2) {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
 `;
 
 export const PanelBio = styled.div`
@@ -79,4 +97,40 @@ export const PanelBio = styled.div`
 
   padding-bottom: 100px;
 `;
-export const PanelSocial = styled.div``;
+export const PanelSocial = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+  }
+
+  a svg {
+    font-size: 32px;
+  }
+
+  a + a {
+    margin-left: 12px;
+  }
+
+  a.github {
+    background: #000;
+    color: #fff;
+  }
+
+  a.blog {
+    background: #1c64f2;
+    color: #fff;
+  }
+
+  a.twitter {
+    background: #1da1f2;
+    color: #fff;
+  }
+`;
