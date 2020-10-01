@@ -1,27 +1,20 @@
 import React from "react";
 import Head from "next/head";
+import { SearchContext } from "../context/SearchContext";
 
-import Search from "../components/search";
-import hero from "../assets/hero.png";
-import { Container, Title, HeroImage } from "../styles/pages/Home";
+import Home from "../components/home";
+import Dashboard from "../components/dashboard";
 
-const Home: React.FC = () => {
+const Landing: React.FC = () => {
+  const { searchState } = React.useContext(SearchContext);
   return (
-    <Container>
+    <>
       <Head>
         <title>Github Search</title>
       </Head>
-
-      <div>
-        <Title>Github Search</Title>
-        <Search />
-      </div>
-
-      <div>
-        <HeroImage src={hero} alt="Github Search" />
-      </div>
-    </Container>
+      {searchState.data ? <Dashboard /> : <Home />}
+    </>
   );
 };
 
-export default Home;
+export default Landing;

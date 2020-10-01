@@ -24,7 +24,7 @@ const Search: React.FC = () => {
           value={searchState.input}
         />
         <Button type="submit">
-          <FiSearch fontSize={32} />
+          <FiSearch />
         </Button>
       </div>
       {searchState.error && (
