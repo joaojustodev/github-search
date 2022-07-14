@@ -13,7 +13,7 @@ import {
   PanelSocial
 } from "./styles";
 
-const dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   const { searchState, handleClickCleanData } = React.useContext(SearchContext);
   const data = searchState.data;
 
@@ -81,4 +81,4 @@ const dashboard: React.FC = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;
