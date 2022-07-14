@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React from "react";
 import { api } from "../services/api";
+import type { AxiosError } from "axios";
 
 interface IUserGithub {
   name: string;
@@ -18,86 +19,66 @@ interface IUserGithub {
 }
 
 interface ISearchState {
-  input: string;
-  error: string;
+  error: boolean;
+  errorMessage: string;
   loading: boolean;
   data: IUserGithub;
 }
 
 interface ISearchContext {
   searchState: ISearchState;
-  handleSearchSubmit(event: FormEvent): Promise<void>;
-  handleInputSearchChange(event: ChangeEvent<HTMLInputElement>): void;
+  handleSearchSubmit(value: { github: string }): Promise<void>;
   handleClickCleanData(): void;
 }
 
-const SearchContext = React.createContext<ISearchContext>(null);
+const SearchContext = React.createContext({} as ISearchContext);
 
 const SearchContextProvider: React.FC = ({ children }) => {
   const [searchState, setSearchState] = React.useState<ISearchState>({
-    input: "",
-    error: "",
+    error: false,
+    errorMessage: "",
     loading: false,
     data: null
   });
 
-  async function handleSearchSubmit(event: FormEvent) {
-    event.preventDefault();
-    try {
-      if (!searchState.input) {
-        return;
-      }
-
-      setSearchState({
-        ...searchState,
-        loading: true
-      });
-
-      const response = await api.get(`/${searchState.input}`);
-
-      if (response.status !== 200) {
-        setSearchState({
-          ...searchState,
-          input: "",
-          error: "status is not 200",
-          loading: false
-        });
-      }
-
-      setSearchState({
-        ...searchState,
-        input: "",
-        error: "",
-        loading: false,
-        data: response.data
-      });
-    } catch (error) {
-      if (error) {
-        setSearchState({
-          ...searchState,
-          input: "",
-          error: "Catch error",
-          loading: false
-        });
-      }
-    }
-  }
-
-  function handleInputSearchChange(event: ChangeEvent<HTMLInputElement>) {
-    const SearchInputValue = event.target.value;
-
+  async function handleSearchSubmit({ github }) {
     setSearchState({
-      ...searchState,
-      input: SearchInputValue
+      loading: true,
+      data: null,
+      error: false,
+      errorMessage: ""
     });
+
+    await api
+      .get<IUserGithub>(`/${github}`)
+      .then(res => {
+        setSearchState({
+          loading: false,
+          data: res.data,
+          error: false,
+          errorMessage: ""
+        });
+      })
+      .catch((err: AxiosError) => {
+        console.log(err.code);
+
+        if (err) {
+          setSearchState({
+            error: true,
+            errorMessage: err.message,
+            data: null,
+            loading: false
+          });
+        }
+      });
   }
 
   function handleClickCleanData() {
     setSearchState({
-      input: "",
-      error: "",
+      error: false,
       loading: false,
-      data: null
+      data: null,
+      errorMessage: ""
     });
   }
 
@@ -106,7 +87,7 @@ const SearchContextProvider: React.FC = ({ children }) => {
       value={{
         searchState,
         handleSearchSubmit,
-        handleInputSearchChange,
+
         handleClickCleanData
       }}
     >

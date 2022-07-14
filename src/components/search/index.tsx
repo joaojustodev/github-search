@@ -1,36 +1,39 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { SearchContext } from "../../context/SearchContext";
 
 import { FiSearch, FiX } from "react-icons/fi";
 import { Form, Input, Button, ErrorMessage } from "./styles";
 
+interface FormValue {
+  github: string;
+}
 const Search: React.FC = () => {
   const {
-    searchState,
-    handleSearchSubmit,
-    handleInputSearchChange
-  } = React.useContext(SearchContext);
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<FormValue>();
 
+  const { handleSearchSubmit } = useContext(SearchContext);
   return (
-    <Form onSubmit={event => handleSearchSubmit(event)}>
+    <Form onSubmit={handleSubmit(e => handleSearchSubmit(e))}>
       <div className="input-block">
         <Input
           type="text"
           placeholder="Search by users and orgs"
           name="github"
           id="github"
-          onChange={event => handleInputSearchChange(event)}
-          value={searchState.input}
+          {...register("github", { required: "Type a user or org..." })}
         />
         <Button type="submit">
           <FiSearch />
         </Button>
       </div>
-      {searchState.error && (
+      {errors.github && (
         <ErrorMessage>
           <FiX />
-          {searchState.error}
+          {errors.github.message}
         </ErrorMessage>
       )}
     </Form>
