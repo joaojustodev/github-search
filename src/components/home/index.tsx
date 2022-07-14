@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Search from "../search";
-import hero from "../../assets/hero.png"
-import { Container, Title, HeroImage } from './styles';
+import Search from "../Search";
+import hero from "../../assets/hero.png";
+import { Container, Title, HeroImage } from "./styles";
 
 const home: React.FC = () => {
   return (
