@@ -9,16 +9,16 @@
 ## 🎨 Screen
 
 <h3 align="center">
-  <img alt="weatherApp" 
+  <img alt="github-search"
     src="./.github/images/hero.png?raw=true" width="400px" >
-    <img alt="weatherApp" 
+    <img alt="github-search"
     src="./.github/images/dashboard.png?raw=true" width="400px" >
 </h3>
 
 <h3 align="center">
-  <img alt="weatherApp" 
+  <img alt="github-search"
     src="./.github/images/hero_mobile.png?raw=true" width="180px" >
-    <img alt="weatherApp" 
+    <img alt="github-search"
     src="./.github/images/dashboard_mobile.png?raw=true" width="180px" >
 </h3>
 
@@ -26,9 +26,7 @@
 
 - Projeto construido com finalidade para estudos.
 
-- Optei usa Context API para fazer o gerenciamento de estado da aplicação.
-
-- Para fazer as requisições as requisições do github usei axios.
+- Usei Context API para fazer o gerenciamento de estado da aplicação.
 
 ## 🧰 Tools
 
@@ -38,4 +36,4 @@
 
 ## 🙋‍♂️ Author
 
-- **João Vitor** - [Joaobr200](https://www.joaobr200.life)
+- **João Vitor** - [Joaobr200](https://joaojustodev.github.io)

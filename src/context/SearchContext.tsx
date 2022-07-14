@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 interface IUserGithub {
   name: string;
@@ -31,7 +31,7 @@ interface ISearchContext {
 
 const SearchContext = React.createContext({} as ISearchContext);
 
-const SearchContextProvider: React.FC = ({ children }) => {
+const SearchContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [searchState, setSearchState] = React.useState<ISearchState>({
     error: false,
     errorMessage: "",
