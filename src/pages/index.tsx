@@ -1,27 +1,42 @@
-import React from "react";
-import Head from "next/head";
-import { SearchContext } from "../context/SearchContext";
+import React, { useContext } from "react";
 
-import Home from "../components/Home";
+import Search from "../components/Search";
+import hero from "../assets/hero.png";
+import { Container, Title, HeroImage } from "../styles/pages/Home";
+import { SearchContext } from "../context/SearchContext";
+import DashboardSkeleton from "../components/Skeletons/DashboardSkeleton";
 import Dashboard from "../components/Dashboard";
 import ErrorPopup from "../components/ErrorPopup";
-import DashboardSkeleton from "../components/Skeletons/DashboardSkeleton";
 
-const Landing: React.FC = () => {
+const Home: React.FC = () => {
   const {
-    searchState: { data, error, loading }
-  } = React.useContext(SearchContext);
-  return (
-    <>
-      <Head>
-        <title>Github Search</title>
-      </Head>
-      <main>
-        {data ? <Dashboard /> : loading ? <DashboardSkeleton /> : <Home />}
+    searchState: { data, loading, error }
+  } = useContext(SearchContext);
+  if (!data && !loading) {
+    return (
+      <>
+        <Container>
+          <div>
+            <Title>Github Search</Title>
+            <Search />
+          </div>
+
+          <div>
+            <HeroImage src={hero} alt="Github Search" />
+          </div>
+        </Container>
         {error && <ErrorPopup />}
-      </main>
-    </>
-  );
+      </>
+    );
+  }
+
+  if (loading) {
+    return <DashboardSkeleton />;
+  }
+
+  if (data && !loading && !error) {
+    return <Dashboard />;
+  }
 };
 
-export default Landing;
+export default Home;
