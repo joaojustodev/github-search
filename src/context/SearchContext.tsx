@@ -1,6 +1,4 @@
 import React from "react";
-import { api } from "../services/api";
-import type { AxiosError } from "axios";
 
 interface IUserGithub {
   name: string;
@@ -41,6 +39,8 @@ const SearchContextProvider: React.FC = ({ children }) => {
     data: null
   });
 
+  const baseURL = "https://api.github.com/users/";
+
   async function handleSearchSubmit({ github }) {
     setSearchState({
       loading: true,
@@ -49,28 +49,38 @@ const SearchContextProvider: React.FC = ({ children }) => {
       errorMessage: ""
     });
 
-    await api
-      .get<IUserGithub>(`/${github}`)
-      .then(res => {
-        setSearchState({
-          loading: false,
-          data: res.data,
-          error: false,
-          errorMessage: ""
-        });
-      })
-      .catch((err: AxiosError) => {
-        console.log(err.code);
+    const res = await fetch(`${baseURL}${github}`);
 
-        if (err) {
-          setSearchState({
-            error: true,
-            errorMessage: err.message,
-            data: null,
-            loading: false
-          });
-        }
+    if (res.status === 404) {
+      setSearchState({
+        error: true,
+        errorMessage: "User not found...",
+        data: null,
+        loading: false
       });
+
+      return;
+    }
+
+    if (res.status !== 200) {
+      setSearchState({
+        error: true,
+        errorMessage: "Sorry, internal server error...",
+        data: null,
+        loading: false
+      });
+
+      return;
+    }
+
+    const data = await res.json();
+
+    setSearchState({
+      loading: false,
+      data,
+      error: false,
+      errorMessage: ""
+    });
   }
 
   function handleClickCleanData() {
