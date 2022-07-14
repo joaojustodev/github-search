@@ -10,7 +10,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <SearchContextProvider>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <main>
+          <Component {...pageProps} />
+        </main>
         <GlobalStyle />
       </ThemeProvider>
     </SearchContextProvider>
