@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 72px;
+  font-size: calc(48px + (72 - 36) * ((100vw - 600px) / (1920 - 600)));
 `;
 
 export const HeroImage = styled.img`
