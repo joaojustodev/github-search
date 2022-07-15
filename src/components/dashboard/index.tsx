@@ -1,4 +1,5 @@
 import React from "react";
+import type { UserGithub } from "../../contexts/SearchContext";
 import { SearchContext } from "../../contexts/SearchContext";
 
 import { FiArrowLeft, FiGithub, FiTwitter, FiAtSign } from "react-icons/fi";
@@ -13,9 +14,11 @@ import {
   PanelSocial
 } from "./styles";
 
-const Dashboard: React.FC = () => {
-  const { searchState, handleClickCleanData } = React.useContext(SearchContext);
-  const data = searchState.data;
+type DashboardProps = {
+  data: UserGithub;
+};
+const Dashboard = ({ data }: DashboardProps) => {
+  const { handleClickCleanData } = React.useContext(SearchContext);
 
   return (
     <Container>

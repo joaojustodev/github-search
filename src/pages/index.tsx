@@ -34,7 +34,7 @@ const Home: React.FC = () => {
   }
 
   if (data && !loading && !error) {
-    return <Dashboard />;
+    return <Dashboard data={data} />;
   }
 };
 

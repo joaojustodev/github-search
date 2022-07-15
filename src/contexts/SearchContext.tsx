@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-interface IUserGithub {
+export type UserGithub = {
   name: string;
   login: string;
   avatar_url: string;
@@ -14,25 +14,25 @@ interface IUserGithub {
   followers: string;
   following: string;
   created_at: string;
-}
+};
 
-interface ISearchState {
+type SearchState = {
   error: boolean;
   errorMessage: string;
   loading: boolean;
-  data: IUserGithub;
-}
+  data: UserGithub;
+};
 
-interface ISearchContext {
-  searchState: ISearchState;
+type SearchContext = {
+  searchState: SearchState;
   handleSearchSubmit(value: { github: string }): Promise<void>;
   handleClickCleanData(): void;
-}
+};
 
-const SearchContext = React.createContext({} as ISearchContext);
+const SearchContext = React.createContext({} as SearchContext);
 
 const SearchContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [searchState, setSearchState] = React.useState<ISearchState>({
+  const [searchState, setSearchState] = React.useState<SearchState>({
     error: false,
     errorMessage: "",
     loading: false,
