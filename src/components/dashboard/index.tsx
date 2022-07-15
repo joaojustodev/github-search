@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchContext } from "../../context/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 
 import { FiArrowLeft, FiGithub, FiTwitter, FiAtSign } from "react-icons/fi";
 import {

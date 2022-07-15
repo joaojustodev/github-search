@@ -1,6 +1,6 @@
 import React from "react";
 import { AppProps } from "next/app";
-import { SearchContextProvider } from "../context/SearchContext";
+import { SearchContextProvider } from "../contexts/SearchContext";
 import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "../styles/global";

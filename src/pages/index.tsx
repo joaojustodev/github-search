@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import Search from "../components/Search";
 import { Container, Title, HeroImage } from "../styles/pages/Home";
-import { SearchContext } from "../context/SearchContext";
+import { SearchContext } from "../contexts/SearchContext";
 import DashboardSkeleton from "../components/Skeletons/DashboardSkeleton";
 import Dashboard from "../components/Dashboard";
 import ErrorPopup from "../components/ErrorPopup";

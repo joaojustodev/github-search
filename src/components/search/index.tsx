@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { SearchContext } from "../../context/SearchContext";
+import { SearchContext } from "../../contexts/SearchContext";
 
 import { FiSearch, FiX } from "react-icons/fi";
 import { Form, Input, Button, ErrorMessage } from "./styles";
