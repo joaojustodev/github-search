@@ -28,6 +28,7 @@
     "react/prop-types": "off",
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
-    "camelcase": "off"
+    "camelcase": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }
