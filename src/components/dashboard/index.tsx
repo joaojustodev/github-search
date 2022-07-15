@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import type { UserGithub } from "../../contexts/SearchContext";
 import { SearchContext } from "../../contexts/SearchContext";
 
@@ -19,10 +20,15 @@ type DashboardProps = {
 };
 const Dashboard = ({ data }: DashboardProps) => {
   const { handleClickCleanData } = React.useContext(SearchContext);
+  const { asPath, push } = useRouter();
+
+  function moveToIndex() {
+    push("/");
+  }
 
   return (
     <Container>
-      <GoBack onClick={handleClickCleanData}>
+      <GoBack onClick={asPath !== "/" ? moveToIndex : handleClickCleanData}>
         <FiArrowLeft fontSize={42} />
       </GoBack>
       <Panel>
